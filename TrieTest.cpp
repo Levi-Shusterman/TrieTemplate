@@ -1,4 +1,5 @@
 #include "Trie.h"
+#include "node.h"
 #include <iostream>
 #include <vector>
 #include <stdexcept>

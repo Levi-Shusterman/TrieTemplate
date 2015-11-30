@@ -1,6 +1,7 @@
 #include <vector>
 #include <functional>
 #include <stdexcept>
+#include "node.h"
 
 using std::vector;
 using std::function;
@@ -20,9 +21,15 @@ class Trie{
         }
         Trie(int bucketSize){
         	bucket_size = bucketSize;
+        	root =  node<data_type>(bucket_size);
+        	// myvec = vector<int>();
+        	// myvec();
+        	myvec[1000] = bucket_size;
         }
 
     private:
     	int bucket_size;
+    	node<data_type> root;
+    	vector<int> myvec;
 };
 
