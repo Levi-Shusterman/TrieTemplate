@@ -107,7 +107,7 @@ void test_one_char()
 }
 int main(){
 	test_char_int();
-//	test_int_char();
+	test_int_char();
 	test_two_inserts();
 	test_one_char();
 }
