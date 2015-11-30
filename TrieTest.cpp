@@ -19,16 +19,16 @@ void test_char_int( ){
 		//randomizing keys in the trie
 		//inserting random strings
 		my_string = {a, a + 1, a + 2, a + 3} ;
-		test_trie.insert(my_string, a, []( char a ){ return 'z' - a + 'a' ; });
+		test_trie.insert(my_string, a, []( char a ){ return 25 - 'z' + a ; });
 		
 		my_string = {a, a - 2, a + 1, a + 2, a + 3, a + 4} ;
-		test_trie.insert(my_string, a + 3, []( char a ){ return 'z' - a + 'a' ; });
+		test_trie.insert(my_string, a + 3, []( char a ){ return 25 - 'z' + a ; });
 	}
 
 	try{
 		int x;
 		if( (x = test_trie.retrieve(my_string, 
-			[]( char a ){ return 'z' - a + 'a' ; })) == a + 3 ){
+			[]( char a ){ return 25 - 'z' + a ; })) == a + 3 ){
 			cout << "Test 1 : character key, int data : PASS\n" ;
 		}else{
 			cout << "Test 1 : character key, int data, wrong value : FAIL\n" ;
@@ -67,9 +67,30 @@ void test_int_char(){
 
 }
 
+void test_two_inserts(){
+	Trie<char,int> test_trie(26);
+
+	vector<char> my_string = {'a', 'b', 'c'};
+	test_trie.insert(my_string, 11, []( char a ){ return 25 - 'z' + a  ; });
+
+	my_string = {'a', 'b', 'd'};
+	test_trie.insert(my_string,  11, []( char a ){ return  25 - 'z' + a  ; });
+
+	try{
+		if( test_trie.retrieve(my_string, []( char a ){ return 25 - 'z' + a; }) == 11 ){
+			cout << "Test 3 : char key, int data : PASS\n" ;
+		}else{
+			cout << "Test 3 : char key, int data, wrong value : FAIL\n" ;
+		}
+	}catch(const invalid_argument& e){
+		cout << "Test 3 : char key, int data : FAIL \n" ;
+	}
+}
+
 int main(){
 	test_char_int();
 //	test_int_char();
+	test_two_inserts();
 }
 
 
