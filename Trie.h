@@ -13,7 +13,7 @@ class Trie{
     public:
         bool insert(vector<key_type> key, data_type data, function<int(key_type)> get_index){
         	int index;
-        	node<data_type> &temp = root; //reference variable
+        	node<data_type> temp = root; //reference variable
 
         	for( auto x: key){
         		index = get_index(x	);
@@ -34,7 +34,7 @@ class Trie{
 
         data_type retrieve( vector<key_type> key, function<int(key_type)> get_index ){
         	int index;
-        	node<data_type> &temp = root; //reference variable
+        	node<data_type> temp = &root; //reference variable
 
         	for( auto x: key){
         		index = get_index(x);

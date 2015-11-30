@@ -25,17 +25,19 @@ public:
 		// bucket sized all initialized to zero
 	}
 	node(){
-		// next_vec = vector<node>();
 	}
 	bool check_index(int index){
-		if( next_vec.empty() ){
+
+		if( next_vec.capacity() == 0 ){
+		//vector not yet initialized
 			next_vec.reserve(bucket_size);
 			return false;
 		}
 		else{
+		//vector initialized, is the index present?
 			node<data_type>& temp = next_vec[index];
 			
-			if( temp.next_vec.empty() ) 
+			if( temp.next_vec.capacity() == 0 ) 
 			{	
 				return false;
 			}
