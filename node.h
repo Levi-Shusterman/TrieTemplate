@@ -9,7 +9,7 @@ class node
 private:
 	// Hierachically contains all of the strata of the trie using a vector containing pointers to the next
 	// nodes in the structure
-	vector<node> next_vec;
+	vector<node<data_type>> next_vec;
 
 	// When we find a match, then we will point to an object of type Y defined by the programmer
 	data_type finalObj;

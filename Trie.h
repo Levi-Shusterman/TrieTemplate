@@ -20,12 +20,12 @@ class Trie{
 
         		if( temp.check_index(index)){
         		//Element already in the trie at this point
-        			temp = temp.move_to_index(index);
+        			// temp = temp.move_to_index(index);
         		}else{
         		//Element not in the trie
         			temp.create_index(index);
-        			temp = temp.move_to_index(index);
         		}
+				temp = temp.move_to_index(index);
         	}
         	temp.assign_data( data);
 
