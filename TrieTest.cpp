@@ -1,9 +1,9 @@
 #include "Trie.h"
-#include "node.h"
+// #include "node.h"
 #include <iostream>
+
 #include <vector>
 #include <stdexcept>
-
 using std::vector;
 using std::cout;
 using std::invalid_argument;
@@ -15,21 +15,24 @@ void test_char_int( ){
 	char a;
 	vector<char> my_string;
 
-	for(a = 'a'; a <= 'z'; a++){
+	for(a = 'a'; a <= 'q'; a++){
 		//randomizing keys in the trie
 		//inserting random strings
 		my_string = {a, a + 1, a + 2, a + 3} ;
-		test_trie.insert(my_string, a, [&]( char a ){ return 1; });
+		test_trie.insert(my_string, a, []( char a ){ return 'z' - a + 'a' ; });
 		
 		my_string = {a, a - 2, a + 1, a + 2, a + 3, a + 4} ;
-		test_trie.insert(my_string, a + 3, [&]( char a ){ return 1; });
+		test_trie.insert(my_string, a + 3, []( char a ){ return 'z' - a + 'a' ; });
 	}
 
 	try{
-		if( test_trie.retrieve(my_string) == a + 3 ){
+		int x;
+		if( (x = test_trie.retrieve(my_string, 
+			[]( char a ){ return 'z' - a + 'a' ; })) == a + 3 ){
 			cout << "Test 1 : character key, int data : PASS\n" ;
 		}else{
 			cout << "Test 1 : character key, int data, wrong value : FAIL\n" ;
+			cout << x << "\n";
 		}
 	}catch(const invalid_argument& e){
 		cout << "Test 1 : character key, int data : FAIL \n" ;
@@ -46,14 +49,14 @@ void test_int_char(){
 		//randomizing keys in the trie
 		//inserting random strings
 		my_string = {a, a + 1, a + 2, a + 3} ;
-		test_trie.insert(my_string, 'a', [&]( int a ){ return 1; });
+		test_trie.insert(my_string, 'a', []( int a ){ return a; });
 		
 		my_string = {a, a , a + 1, a + 2, a + 3, a + 4} ;
-		test_trie.insert(my_string, 'z', [&]( int a ){ return 1; });
+		test_trie.insert(my_string, 'z', []( int a ){ return a; });
 	}
 
 	try{
-		if( test_trie.retrieve(my_string) == 'z' ){
+		if( test_trie.retrieve(my_string, []( int a ){ return a; }) == 'z' ){
 			cout << "Test 2 : int key, char data : PASS\n" ;
 		}else{
 			cout << "Test 2 : int key, char data, wrong value : FAIL\n" ;
@@ -66,7 +69,7 @@ void test_int_char(){
 
 int main(){
 	test_char_int();
-	test_int_char();
+//	test_int_char();
 }
 
 
