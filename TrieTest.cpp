@@ -87,10 +87,29 @@ void test_two_inserts(){
 	}
 }
 
+void test_one_char()
+{
+	Trie<char,int> test_trie(26);
+
+	vector<char> my_string = {'a'};
+	test_trie.insert(my_string, 11, []( char a ){ return 25 - 'z' + a  ; });
+
+	try{
+		if( test_trie.retrieve(my_string, []( char a ){ return 25 - 'z' + a; }) == 11 ){
+			cout << "Test 4, just one character : PASS\n" ;
+		}else{
+			cout << "Test 4, just one character, wrong value : FAIL\n" ;
+		}
+	}catch(const invalid_argument& e){
+		cout << "Test 4, just one character : FAIL \n" ;
+	}
+
+}
 int main(){
 	test_char_int();
 //	test_int_char();
 	test_two_inserts();
+	test_one_char();
 }
 
 

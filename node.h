@@ -30,7 +30,6 @@ public:
 
 		if( next_vec.capacity() == 0 ){
 		//vector not yet initialized
-			next_vec.reserve(bucket_size);
 			return false;
 		}
 		else{
@@ -52,6 +51,7 @@ public:
 	}
 
 	void create_index(int index){
+		next_vec.reserve(bucket_size);
 		next_vec[index] = node<data_type>(bucket_size);
 	}
 	

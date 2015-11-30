@@ -34,6 +34,8 @@ class Trie{
         		}
 				temp = temp->move_to_index(index);
         	}
+
+        	temp->create_index(index);
         	temp->assign_data( data);
 
         	return true;
