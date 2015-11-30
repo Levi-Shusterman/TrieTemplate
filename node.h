@@ -46,8 +46,8 @@ public:
 		return true;
 	}
 
-	node<data_type> move_to_index( int index){
-		node<data_type> &temp = next_vec[index];
+	node<data_type>* move_to_index( int index){
+		node<data_type> *temp = &(next_vec[index]);
 		return temp;
 	}
 
