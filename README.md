@@ -7,7 +7,7 @@ System: Ubuntu flavor of Linux. Source code can easily be modified to run on a d
 Compiler: g++, C++ 2011
 
 API: constructor(), insert(), retrieve()
-#todo: Add an update() method to modify an existing key's data in the trie
+  todo: Add an update() method to modify an existing key's data in the trie
 
 Instructions: Upload node.h and trie.h into a directory. Compile with g++ -std=c++11 *.cpp.
   TrieTest.cpp contains a suite of tests. Add more tests with different data types( can be a class or struct too) to suit your needs.
