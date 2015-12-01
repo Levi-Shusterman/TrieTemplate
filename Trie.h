@@ -16,7 +16,7 @@ class Trie{
     public:
         bool insert(vector<key_type> key, data_type data, function<int(key_type)> get_index){
         	int index;
-        	node<data_type> *temp = root; //reference variable
+        	node<data_type> *temp = root; 
 
         	for( auto x: key){
         		index = get_index(x	);
@@ -27,7 +27,6 @@ class Trie{
 
         		if( temp->check_index(index)){
         		//Element already in the trie at this point
-        			// temp = temp->move_to_index(index);
         		}else{
         		//Element not in the trie
         			temp->create_index(index);
@@ -35,7 +34,7 @@ class Trie{
 				temp = temp->move_to_index(index);
         	}
 
-        	temp->create_index(index);
+        	temp->create_index(index); //must create index at the end
         	temp->assign_data( data);
 
         	return true;
@@ -43,7 +42,7 @@ class Trie{
 
         data_type retrieve( vector<key_type> key, function<int(key_type)> get_index ){
         	int index;
-        	node<data_type> *temp = root; //reference variable
+        	node<data_type> *temp = root; 
         	int y = 0;
 
         	for( auto x: key){
@@ -54,7 +53,6 @@ class Trie{
         			temp = temp->move_to_index(index);
         		}else{
         			 cout << y << " times in retrieve for loop\n" ;
-
         			throw invalid_argument("Key not found in trie");
         		}
         	}
@@ -65,12 +63,12 @@ class Trie{
         Trie(int bucketSize){
         	bucket_size = bucketSize;
         	root = new node<data_type>(bucket_size);
-        	// myvec = vector<int>();
-        	// myvec();
         }
 
     private:
-    	int bucket_size;
-    	node<data_type> *root;
+        int bucket_size;
+
+        //must be a pointer so that changes stay beyond scope
+    	node<data_type> *root; 
 };
 
